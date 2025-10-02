@@ -1,0 +1,40 @@
+/*reset css*/
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+/*body*/
+body{
+    background: #eaeaea;
+}
+/*contenedor-google*/
+.contenedor-google{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    height:100vh;
+    justify-content: center;
+    margin: 0 auto;
+    width:50%;
+}
+/*imagen-google*/
+.imagen-google{
+    margin: 0 auto;
+    width:40%;
+}
+/*buscador-google*/
+.buscador-google{
+    border:1px solid #bdbdbd;
+    border-radius: 30px;
+    margin:0 auto;
+    padding:15px;
+    width:80%;
+}
+/*botones-google*/
+.boton-google{
+    border:1px solid #bdbdbd;
+    border-radius: 10px;
+    padding:10px;
+}
