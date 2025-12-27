@@ -1,7 +1,8 @@
 //CRUD con Arreglos y LocalStorage
 //Elementos del DOM
 const contactList = document.getElementById("listaContactos");
-const createContentButton = document.getElementById("crearContacto");
+const createContentForm = document.getElementById("crearContacto");
+const deleteContentButton = document.getElementById('eliminarContacto');
 const updateContentButton = document.getElementById('actualizarContacto');
 
 //1._Crear mi colección
@@ -14,9 +15,7 @@ const contactos = [
     cp: "55678",
   },
 ];
-
 console.log(contactos)
-
 //2._Create: utilizando el método push
 function createContact(contact /*objeto*/) {
   let total = contactos.push(contact);
@@ -24,7 +23,7 @@ function createContact(contact /*objeto*/) {
   console.log(contactos);
 }
 
-//Read
+//Read: utilizando método map
 function readContent() {
   contactos.map(function (contacto) {
     const { nombre, telefono } = contacto;
@@ -33,7 +32,7 @@ function readContent() {
 }
 readContent();
 
-//Update
+//Update: utilizando método splice
 function updateContent() {
   contactos.splice(0, 1, {
     nombre: "Ricardo Guevara",
@@ -45,20 +44,39 @@ function updateContent() {
   return console.log(contactos)
 }
 
+//Delete: utilizando método splice
+function deleteContent(){
+  contactos.splice(0, 1)
+  return console.log(contactos)
+}
+
 //Eventos del DOM:
 //Create
-createContentButton.addEventListener("click", function () {
+createContentForm.addEventListener("submit", function (event) {
+  //Quitar comportamiento por defecto
+  event.preventDefault()
+  console.log(document.getElementById('nombre').value)
   //Ejecutar función createContact
   createContact({
-    nombre: "Alexis MTZ",
-    telefono: 7890123,
-    correo: "alexis_29@gmail.com",
-    direccion: "Av. de las Garndeias, col. Zumpango R, No. 21",
-    cp: "55678",
+    nombre: document.getElementById('nombre').value,
+    telefono: document.getElementById('telefono').value,
+    correo: document.getElementById('correo').value,
+    direccion: document.getElementById('direccion').value,
+    cp: document.getElementById('zip').value,
   });
+
+  //Mostrar nuevamente los registros
+  readContent()
+  //resetear formulario
+  return event.target.reset()
 });
 
 //Update
 updateContentButton.addEventListener('click', function(){
     updateContent()
+})
+
+//Delete
+deleteContentButton.addEventListener('click', function(){
+  deleteContent()
 })
